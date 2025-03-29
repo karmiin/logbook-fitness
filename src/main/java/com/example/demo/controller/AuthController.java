@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+@CrossOrigin(origins = "http://93.148.118.44:80")
 @RestController
 @RequestMapping("/api/auth")
 public class AuthController {
