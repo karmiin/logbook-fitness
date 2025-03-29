@@ -9,7 +9,7 @@ function App() {
 
     const handleRegister = async () => {
         try {
-            const response = await fetch("http://localhost:8080/api/auth/register", {
+            const response = await fetch("https://logbook-backend-aaevayfuechvb9g7.westeurope-01.azurewebsites.net/api/auth/register", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, password }),
@@ -27,7 +27,7 @@ function App() {
 
     const handleLogin = async () => {
         try {
-            const response = await fetch("http://localhost:8080/api/auth/login", {
+            const response = await fetch("https://logbook-backend-aaevayfuechvb9g7.westeurope-01.azurewebsites.net/api/auth/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ email, password }),
