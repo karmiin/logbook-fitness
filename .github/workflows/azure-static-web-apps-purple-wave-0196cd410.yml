@@ -1,40 +1,39 @@
-name: Azure Static Web Apps CI/CD - React with Nx
+name: Deploy static content to Azure Static Web Apps
 
 on:
   push:
-    branches: ["frontend"]
+    branches: [frontend] # Modifica con il nome del tuo branch principale (es. master, main)
   pull_request:
-    branches: ["frontend"]
+    types: [opened, synchronize, reopened]
+    branches: [frontend] # Modifica con il nome del tuo branch principale
 
 jobs:
-  build_and_deploy:
+  build_and_deploy_job:
+    if: github.event_name == 'push' || (github.event_name == 'pull_request' && github.event.action != 'closed')
     runs-on: ubuntu-latest
+    name: Build and Deploy Job
     steps:
       - uses: actions/checkout@v4
+        with:
+          submodules: true
 
       - name: Setup Node.js
         uses: actions/setup-node@v3
         with:
-          node-version: 18
-          cache: 'npm'
+          node-version: 18 # Specifica la versione di Node.js che usi nel progetto
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
-      - name: Build with Nx
-        run: |
-          npm run build
-          # Verifica che la build sia stata creata
-          [ -d dist/apps/myapp/exported ] || (echo "Build failed" && exit 1)
+      - name: Build
+        run: npm run build --if-present # Assumendo che il tuo script di build sia "build" in package.json
 
-      - name: Deploy to Azure
+      - name: Deploy to Azure Static Web Apps
         uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN }}
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
-          action: 'upload'
-          app_location: 'apps/myapp/src'  # Percorso dei sorgenti
-          output_location: 'dist/apps/myapp/exported'  # Percorso di output Nx
-          skip_app_build: true
-          is_static_export: true  # Cruciale per deploy con Nx
-          app_artifact_location: 'dist/apps/myapp/exported'
+          repo_token: ${{ secrets.GITHUB_TOKEN }} # Usato per i commenti sui pull request
+          action: "upload"
+          app_location: "build" # La cartella dove React mette i file built (default create-react-app)
+          output_location: "" # Lascia vuoto se usi create-react-app, altrimenti specifica la sottocartella se necessario
+          app_build_command: "npm run build"
