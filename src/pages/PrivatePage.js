@@ -30,6 +30,7 @@ const PrivatePage = () => {
             });
             console.log("risposta ricevuta", response);
             if(!response.ok){
+                const errorText = await response.json();
                 console.error("Errore nella richiesta al backend:", errorText);
                 throw new Error(`Errore nella richiesta al backend: ${errorText}`);
             }
