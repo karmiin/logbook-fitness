@@ -1,69 +1,31 @@
-// src/App.js
-import React, { useState } from "react";
-import WorkoutGenerator from "./WorkoutGenerator";
+import React from "react";
+import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import Login from "./pages/Login";
+import Registration from "./pages/Registration";
+import Dashboard from "./pages/Dashboard";
 
-function App() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
-    const [message, setMessage] = useState("");
+const darkTheme = createTheme({
+    palette: {
+        mode: "dark",
+    },
+});
 
-    const handleRegister = async () => {
-        try {
-            const response = await fetch("https://logbook-backend-aaevayfuechvb9g7.westeurope-01.azurewebsites.net/api/auth/register", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, password }),
-            });
-            if (!response.ok) {
-                const errorData = await response.text();
-                throw new Error(errorData);
-            }
-            const data = await response.json();
-            setMessage("Registrazione riuscita: " + data.email);
-        } catch (error) {
-            setMessage("Errore nella registrazione: " + error.message);
-        }
-    };
-
-    const handleLogin = async () => {
-        try {
-            const response = await fetch("https://logbook-backend-aaevayfuechvb9g7.westeurope-01.azurewebsites.net/api/auth/login", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ email, password }),
-            });
-            if (!response.ok) {
-                const errorData = await response.text();
-                throw new Error(errorData);
-            }
-            const data = await response.json();
-            setMessage("Login riuscito: " + data.email);
-        } catch (error) {
-            setMessage("Errore nel login: " + error.message);
-        }
-    };
-
+const App = () => {
     return (
-        <div style={{ padding: "20px" }}>
-            <h2>Test di Autenticazione</h2>
-            <input
-                type="text"
-                placeholder="Email"
-                onChange={(e) => setEmail(e.target.value)}
-                value={email}
-            /><br /><br />
-            <input
-                type="password"
-                placeholder="Password"
-                onChange={(e) => setPassword(e.target.value)}
-                value={password}
-            /><br /><br />
-            <button onClick={handleRegister}>Registrati</button>
-            <button onClick={handleLogin} style={{ marginLeft: "10px" }}>Login</button>
-            <p>{message}</p>
-            <WorkoutGenerator />
-        </div>
+        <ThemeProvider theme={darkTheme}>
+            <CssBaseline />
+            <Router>
+
+                    <Routes>
+                        <Route path="/login" element={<Login />} />
+                        <Route path="/register" element={<Registration />} />
+                        <Route path="/" element={<Dashboard />} />
+                    </Routes>
+            </Router>
+        </ThemeProvider>
     );
-}
+};
 
 export default App;
