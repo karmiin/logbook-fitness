@@ -17,6 +17,9 @@ const Dashboard = () => {
                     <Button color="inherit" component={RouterLink} to="/register">
                         Register
                     </Button>
+                    <Button color="inherit" component={RouterLink} to="/protected">
+                        Protected
+                    </Button>
                 </Toolbar>
             </AppBar>
             <Box my={4}>

@@ -22,6 +22,7 @@ const App = () => {
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Registration />} />
                         <Route path="/" element={<Dashboard />} />
+                        <Route path="/protected" element={<PrivatePage />} />
                     </Routes>
             </Router>
         </ThemeProvider>
