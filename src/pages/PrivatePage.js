@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 
-const privatePage = () => {
+const PrivatePage = () => {
     const [user, setUser] = useState(null);
     const [backendData, setBackendData] = useState("");
     const [error, setError] = useState("");
