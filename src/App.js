@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Login from "./pages/Login";
+import PrivatePage from "./pages/PrivatePage";
 import Registration from "./pages/Registration";
 import Dashboard from "./pages/Dashboard";
 
