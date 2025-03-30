@@ -39,8 +39,7 @@ const PrivatePage = () => {
         }
     };
 
-    if(error) return (
-        <div>{error}</div>
+    if(error) return <div>{error}</div>
     if(!user) return <div>Loading...</div>;
 
     return (
