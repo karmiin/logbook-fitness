@@ -16,7 +16,7 @@ const Login = () => {
     }, []);
 
     const handleLogin = () => {
-        window.location.href = "/.auth/login/github"; // Oppure /google, /aad, ecc.
+        window.location.href = "/.auth/login/github";
     };
 
     const handleLogout = () => {
