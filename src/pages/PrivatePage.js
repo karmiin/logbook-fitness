@@ -28,13 +28,16 @@ const PrivatePage = () => {
                     "Content-Type": "application/json"
                 },
             });
+            console.log("risposta ricevuta", response);
             if(!response.ok){
-                throw new Error("Errore nella richiesta al backend");
+                console.error("Errore nella richiesta al backend:", errorText);
+                throw new Error(`Errore nella richiesta al backend: ${errorText}`);
             }
             const result = await response.json();
             console.log("json result", result);
             setBackendData(result.message);
         }catch (error){
+            console.error("Errore catch:", error);
             setError("errore " + error.message);
         }
     };
