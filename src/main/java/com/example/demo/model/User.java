@@ -5,35 +5,21 @@ import lombok.Setter;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+
 @Setter
 @Getter
 @Document(collection = "users")
 public class User {
     @Id
-    private String id;
-    private String name;
-    private String email;
-    private String password;
-    private String role;
-    private boolean weeklyTokenUsed = false;
-    private double weight;
-    private double height;
-    private int trainingDays;
-    private String level;
+    private String userId;
     private int age;
+    private float weight;
+    private float height;
 
-
-    public User(String name, String email, String password) {
-        this.name = name;
-        this.email = email;
-        this.password = password;
+    public User(String userId, int age, float weight, float height) {
+        this.userId = userId;
+        this.age = age;
+        this.weight = weight;
+        this.height = height;
     }
-    public User(String email, String password) {
-        this.email = email;
-        this.password = password;
-    }
-
-    public User() {
-    }
-
 }
