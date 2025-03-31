@@ -50,6 +50,7 @@ public class UserLogController {
         return nutritionDiaryRepository.findByUserId(userId);
     }
 
+    @GetMapping("/{userId}/updateWeight")
     public User updateWeight(@PathVariable String userId, @RequestBody User updateUser){
         User user = userRepository.findById(userId).orElse(null);
         if(user != null){
