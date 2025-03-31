@@ -4,7 +4,6 @@ import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
-import Registration from "./pages/Registration";
 import Dashboard from "./pages/Dashboard";
 
 const darkTheme = createTheme({
@@ -21,7 +20,6 @@ const App = () => {
 
                     <Routes>
                         <Route path="/login" element={<Login />} />
-                        <Route path="/register" element={<Registration />} />
                         <Route path="/" element={<Dashboard />} />
                         <Route path="/protected" element={<Profile />} />
                     </Routes>
