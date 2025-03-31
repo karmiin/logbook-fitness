@@ -1,15 +1,8 @@
-import React, { useEffect, useState } from "react";
-import {
-    Container, Typography, Box, Paper, Button, Avatar,
-    Tabs, Tab, Divider, Card, CardContent, Grid, CircularProgress
-} from "@mui/material";
-import {
-    FitnessCenter, Restaurant, Person, Logout, Edit
-} from "@mui/icons-material";
+import React, { useCallback, useEffect, useState } from "react";
+import { Container, Typography, Box, Paper, Button, Avatar, Tabs, Tab, Divider, Card, CardContent, Grid, CircularProgress } from "@mui/material";
+import { FitnessCenter, Restaurant, Person, Logout, Edit } from "@mui/icons-material";
 
-// Componente Profilo Utente
 const ProfileInfo = ({ user }) => {
-    // Dati utente simulati (in un caso reale verrebbero dal backend)
     const userDetails = {
         name: user.userDetails,
         weight: 75,
@@ -23,20 +16,13 @@ const ProfileInfo = ({ user }) => {
                 <Grid item xs={12} md={4}>
                     <Card elevation={3}>
                         <CardContent sx={{ textAlign: 'center' }}>
-                            <Avatar
-                                sx={{ width: 120, height: 120, mx: 'auto', mb: 2, bgcolor: 'primary.main' }}
-                            >
+                            <Avatar sx={{ width: 120, height: 120, mx: 'auto', mb: 2, bgcolor: 'primary.main' }}>
                                 {userDetails.name.charAt(0).toUpperCase()}
                             </Avatar>
                             <Typography variant="h5" gutterBottom>
                                 {userDetails.name}
                             </Typography>
-                            <Button
-                                startIcon={<Edit />}
-                                variant="outlined"
-                                size="small"
-                                sx={{ mt: 1 }}
-                            >
+                            <Button startIcon={<Edit />} variant="outlined" size="small" sx={{ mt: 1 }}>
                                 Modifica profilo
                             </Button>
                         </CardContent>
@@ -89,7 +75,6 @@ const ProfileInfo = ({ user }) => {
     );
 };
 
-// Componente Logbook Palestra
 const GymLogbook = () => {
     return (
         <Box sx={{ mt: 4 }}>
@@ -97,7 +82,6 @@ const GymLogbook = () => {
                 Logbook Allenamento
             </Typography>
             <Divider sx={{ mb: 3 }} />
-
             <Card sx={{ mb: 3 }}>
                 <CardContent>
                     <Typography variant="h6">
@@ -119,7 +103,6 @@ const GymLogbook = () => {
                     </Box>
                 </CardContent>
             </Card>
-
             <Card>
                 <CardContent>
                     <Typography variant="h6">
@@ -141,19 +124,13 @@ const GymLogbook = () => {
                     </Box>
                 </CardContent>
             </Card>
-
-            <Button
-                variant="contained"
-                startIcon={<FitnessCenter />}
-                sx={{ mt: 3 }}
-            >
+            <Button variant="contained" startIcon={<FitnessCenter />} sx={{ mt: 3 }}>
                 Aggiungi allenamento
             </Button>
         </Box>
     );
 };
 
-// Componente Diario Nutrizione
 const NutritionDiary = () => {
     return (
         <Box sx={{ mt: 4 }}>
@@ -161,7 +138,6 @@ const NutritionDiary = () => {
                 Diario Nutrizionale
             </Typography>
             <Divider sx={{ mb: 3 }} />
-
             <Grid container spacing={3}>
                 <Grid item xs={12} md={6}>
                     <Card>
@@ -170,21 +146,24 @@ const NutritionDiary = () => {
                                 Lunedì
                             </Typography>
                             <Divider sx={{ my: 1 }} />
-                            <Typography variant="subtitle1">Colazione</Typography>
+                            <Typography variant="subtitle1">
+                                Colazione
+                            </Typography>
                             <Typography variant="body2" gutterBottom>
                                 Avena con latte e frutti di bosco, caffè
                             </Typography>
-
-                            <Typography variant="subtitle1">Pranzo</Typography>
+                            <Typography variant="subtitle1">
+                                Pranzo
+                            </Typography>
                             <Typography variant="body2" gutterBottom>
                                 Petto di pollo, riso integrale, insalata mista
                             </Typography>
-
-                            <Typography variant="subtitle1">Cena</Typography>
+                            <Typography variant="subtitle1">
+                                Cena
+                            </Typography>
                             <Typography variant="body2" gutterBottom>
                                 Salmone, patate dolci, verdure grigliate
                             </Typography>
-
                             <Box sx={{ mt: 2, display: 'flex', justifyContent: 'space-between' }}>
                                 <Typography variant="body2">
                                     <strong>Calorie:</strong> 2100 kcal
@@ -196,7 +175,6 @@ const NutritionDiary = () => {
                         </CardContent>
                     </Card>
                 </Grid>
-
                 <Grid item xs={12} md={6}>
                     <Card>
                         <CardContent>
@@ -204,21 +182,24 @@ const NutritionDiary = () => {
                                 Martedì
                             </Typography>
                             <Divider sx={{ my: 1 }} />
-                            <Typography variant="subtitle1">Colazione</Typography>
+                            <Typography variant="subtitle1">
+                                Colazione
+                            </Typography>
                             <Typography variant="body2" gutterBottom>
                                 Uova strapazzate, pane integrale, avocado
                             </Typography>
-
-                            <Typography variant="subtitle1">Pranzo</Typography>
+                            <Typography variant="subtitle1">
+                                Pranzo
+                            </Typography>
                             <Typography variant="body2" gutterBottom>
                                 Pasta integrale con tonno e pomodorini
                             </Typography>
-
-                            <Typography variant="subtitle1">Cena</Typography>
+                            <Typography variant="subtitle1">
+                                Cena
+                            </Typography>
                             <Typography variant="body2" gutterBottom>
                                 Bistecca di manzo, quinoa, broccoli
                             </Typography>
-
                             <Box sx={{ mt: 2, display: 'flex', justifyContent: 'space-between' }}>
                                 <Typography variant="body2">
                                     <strong>Calorie:</strong> 2200 kcal
@@ -231,40 +212,21 @@ const NutritionDiary = () => {
                     </Card>
                 </Grid>
             </Grid>
-
-            <Button
-                variant="contained"
-                startIcon={<Restaurant />}
-                sx={{ mt: 3 }}
-            >
+            <Button variant="contained" startIcon={<Restaurant />} sx={{ mt: 3 }}>
                 Aggiungi pasto
             </Button>
         </Box>
     );
 };
 
-// Componente principale
 const Profile = () => {
     const [user, setUser] = useState(null);
-    const [backendData, setBackendData] = useState("");
+    //const [backendData, setBackendData] = useState("");
     const [error, setError] = useState("");
     const [activeTab, setActiveTab] = useState(0);
 
-    useEffect(() => {
-        fetch("/.auth/me")
-            .then((res) => res.json())
-            .then((data) => {
-                if (data.clientPrincipal) {
-                    setUser(data.clientPrincipal);
-                    fetchBackend(data.clientPrincipal.accessToken);
-                } else {
-                    setError("utente non autenticato");
-                }
-            })
-            .catch(() => setError("errore recupero utente"));
-    }, []);
-
-    const fetchBackend = async (token) => {
+    // Definisco fetchBackend con useCallback e sostituisco il log dello stato con quello ottenuto dalla risposta
+    const fetchBackend = useCallback(async (token) => {
         try {
             const response = await fetch(
                 "https://logbook-backend-aaevayfuechvb9g7.westeurope-01.azurewebsites.net/api/protected",
@@ -281,43 +243,55 @@ const Profile = () => {
                 throw new Error(`Errore nella richiesta al backend: ${errorText}`);
             }
             const result = await response.text();
-            setBackendData(result.message);
-            console.log("Backend data:", backendData);
+            //setBackendData(result.message);
+            console.log("Backend data:", result.message);
         } catch (error) {
             setError("errore " + error.message);
         }
-    };
+    }, []); // Nessuna dipendenza qui, in quanto non usiamo variabili esterne nella callback
+
+    useEffect(() => {
+        fetch("/.auth/me")
+            .then((res) => res.json())
+            .then((data) => {
+                if (data.clientPrincipal) {
+                    setUser(data.clientPrincipal);
+                    fetchBackend(data.clientPrincipal.accessToken);
+                } else {
+                    setError("utente non autenticato");
+                }
+            })
+            .catch(() => setError("errore recupero utente"));
+    }, [fetchBackend]);
 
     const handleTabChange = (event, newValue) => {
         setActiveTab(newValue);
     };
 
-    if (error) return (
-        <Container maxWidth="md" sx={{ mt: 4, textAlign: 'center' }}>
-            <Paper elevation={3} sx={{ p: 4 }}>
-                <Typography variant="h5" color="error" gutterBottom>
-                    Errore
-                </Typography>
-                <Typography variant="body1">{error}</Typography>
-                <Button
-                    variant="contained"
-                    sx={{ mt: 2 }}
-                    onClick={() => window.location.href = "/"}
-                >
-                    Torna alla Home
-                </Button>
-            </Paper>
-        </Container>
-    );
+    if (error)
+        return (
+            <Container maxWidth="md" sx={{ mt: 4, textAlign: 'center' }}>
+                <Paper elevation={3} sx={{ p: 4 }}>
+                    <Typography variant="h5" color="error" gutterBottom>
+                        Errore
+                    </Typography>
+                    <Typography variant="body1">{error}</Typography>
+                    <Button variant="contained" sx={{ mt: 2 }} onClick={() => window.location.href = "/"}>
+                        Torna alla Home
+                    </Button>
+                </Paper>
+            </Container>
+        );
 
-    if (!user) return (
-        <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '70vh' }}>
-            <CircularProgress />
-            <Typography variant="h6" sx={{ ml: 2 }}>
-                Caricamento...
-            </Typography>
-        </Box>
-    );
+    if (!user)
+        return (
+            <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '70vh' }}>
+                <CircularProgress />
+                <Typography variant="h6" sx={{ ml: 2 }}>
+                    Caricamento...
+                </Typography>
+            </Box>
+        );
 
     return (
         <Container maxWidth="lg" sx={{ py: 4 }}>
@@ -326,16 +300,10 @@ const Profile = () => {
                     <Typography variant="h4" component="h1">
                         Profilo Personale
                     </Typography>
-                    <Button
-                        variant="outlined"
-                        color="error"
-                        startIcon={<Logout />}
-                        onClick={() => window.location.href = "/.auth/logout"}
-                    >
+                    <Button variant="outlined" color="error" startIcon={<Logout />} onClick={() => window.location.href = "/.auth/logout"}>
                         Logout
                     </Button>
                 </Box>
-
                 <Tabs
                     value={activeTab}
                     onChange={handleTabChange}
@@ -349,7 +317,6 @@ const Profile = () => {
                     <Tab icon={<Restaurant />} label="Diario Nutrizionale" />
                 </Tabs>
             </Paper>
-
             {activeTab === 0 && <ProfileInfo user={user} />}
             {activeTab === 1 && <GymLogbook />}
             {activeTab === 2 && <NutritionDiary />}
