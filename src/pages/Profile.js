@@ -281,8 +281,8 @@ const Profile = () => {
                 throw new Error(`Errore nella richiesta al backend: ${errorText}`);
             }
             const result = await response.text();
-            console.log("json result", result);
             setBackendData(result.message);
+            console.log("Backend data:", backendData);
         } catch (error) {
             setError("errore " + error.message);
         }
