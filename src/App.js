@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import Login from "./pages/Login";
-import PrivatePage from "./pages/PrivatePage";
+import Profile from "./pages/Profile";
 import Registration from "./pages/Registration";
 import Dashboard from "./pages/Dashboard";
 
@@ -23,7 +23,7 @@ const App = () => {
                         <Route path="/login" element={<Login />} />
                         <Route path="/register" element={<Registration />} />
                         <Route path="/" element={<Dashboard />} />
-                        <Route path="/protected" element={<PrivatePage />} />
+                        <Route path="/protected" element={<Profile />} />
                     </Routes>
             </Router>
         </ThemeProvider>
