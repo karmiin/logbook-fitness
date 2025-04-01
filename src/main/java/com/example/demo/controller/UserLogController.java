@@ -36,7 +36,7 @@ public class UserLogController {
                 .orElseGet(() -> ResponseEntity.status(HttpStatus.NOT_FOUND).build());
     }
 
-    @GetMapping("/register")
+    @PostMapping("/register")
     public ResponseEntity<User> registerUser(@RequestBody User newUser) {
         if(userRepository.existsById(newUser.getUserId())) {
             return ResponseEntity.status(HttpStatus.CONFLICT).build();
