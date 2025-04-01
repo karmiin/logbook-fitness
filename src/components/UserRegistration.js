@@ -15,6 +15,7 @@ const UserRegistration = ({ user, onRegistrationSuccess }) => {
         setLoading(true);
 
         const payload = {
+            userId: user.userDetails,
             age: parseInt(age, 10),
             weight: parseFloat(weight),
             height: parseFloat(height)
@@ -28,6 +29,7 @@ const UserRegistration = ({ user, onRegistrationSuccess }) => {
                 },
                 body: JSON.stringify(payload)
             });
+            console.log("Payload sent to backend:", payload);
             if (!response.ok) {
                 const message = await response.text();
                 throw new Error(message);
