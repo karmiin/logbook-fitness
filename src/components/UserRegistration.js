@@ -15,7 +15,6 @@ const UserRegistration = ({ user, onRegistrationSuccess }) => {
         setLoading(true);
 
         const payload = {
-            userId: user.oid || user.userDetails,
             age: parseInt(age, 10),
             weight: parseFloat(weight),
             height: parseFloat(height)
