@@ -32,6 +32,7 @@ const UserRegistration = ({ user, onRegistrationSuccess }) => {
             console.log("Payload sent to backend:", payload);
             if (!response.ok) {
                 const message = await response.text();
+                console.log(message);
                 throw new Error(message);
             }
             onRegistrationSuccess();
