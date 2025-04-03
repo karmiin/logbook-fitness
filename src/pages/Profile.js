@@ -64,8 +64,8 @@ const Profile = () => {
                 if (data.clientPrincipal) {
                     setUser(data.clientPrincipal);
                     fetchBackend(data.clientPrincipal.accessToken);
-                    // Utilizziamo data.clientPrincipal.userDetails come identificativo
-                    checkUserRegistration(data.clientPrincipal.userDetails);
+                    // Utilizziamo data.clientPrincipal.userId come identificativo
+                    checkUserRegistration(data.clientPrincipal.userId);
                 } else {
                     setError("utente non autenticato");
                 }
